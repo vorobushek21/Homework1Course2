@@ -1,12 +1,12 @@
 package transport;
 
-public class Car extends Transport {
-    //private final String brand;
-    //private final String model;
+public class Car {
+    private final String brand;
+    private final String model;
     private double engineVolume;
-    //private String color;
-    //private final int year;
-    //private final String country;
+    private String color;
+    private final int year;
+    private final String country;
     private String transmission;
     private final String bodyType;
     private int registrationNumber;
@@ -45,20 +45,13 @@ public class Car extends Transport {
         return tyres;
     }
 
-    public Car(String brand,
-               String model,
-               double engineVolume,
-               String color,
-               int year,
-               String country,
-               String transmission,
-               String bodyType,
-               int registrationNumber,
-               int numberOfSeats,
-               boolean tyres,
-               int maxSpeed) {
-        super(model, brand, color, year, country, maxSpeed);
+    public Car(String brand, String model, double engineVolume, String color, int year, String country, String transmission, String bodyType, int registrationNumber, int numberOfSeats, boolean tyres) {
+        this.brand = brand;
+        this.model = model;
         this.engineVolume = engineVolume;
+        this.color = color;
+        this.year = year;
+        this.country = country;
         this.transmission = transmission;
         this.bodyType = bodyType;
         this.registrationNumber = registrationNumber;
@@ -70,6 +63,16 @@ public class Car extends Transport {
         } else {
             tyresType = "Летняя резина";
         }
+        //if (model == null || model.equals("")) {
+        //    this.model = "default";
+        //}if (brand == null || brand.equals("")) {
+        //    this.brand = "default";
+        //}if (country == null || country.equals("")) {
+        //    this.country = "default";
+        //}
+        if (color == null || color.equals("")) {
+            this.color = "белый";
+        }
         if (transmission == null || transmission.equals("")) {
             this.transmission = "механика";
         }
@@ -79,6 +82,9 @@ public class Car extends Transport {
         if (registrationNumber <= 0) {
             this.registrationNumber = 123;
         }
+        //if (year <= 0) {
+        //    this.year = 2000;
+        //}
 
     }
 
@@ -90,22 +96,46 @@ public class Car extends Transport {
         }
     }
 
+    public String getBrand() {
+        return brand;
+    }
 
+    public String getModel() {
+        return model;
+    }
 
     public double getEngineVolume() {
         return engineVolume;
     }
 
+    public String getColor() {
+        return color;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+
+
     @Override
     public String toString() {
-        return "Car{" + super.toString() + " ," +
-                "engineVolume=" + engineVolume +
+        return "Car{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", engineVolume=" + engineVolume +
+                ", color='" + color + '\'' +
+                ", year=" + year +
+                ", country='" + country + '\'' +
                 ", transmission='" + transmission + '\'' +
                 ", bodyType='" + bodyType + '\'' +
                 ", registrationNumber=" + registrationNumber +
                 ", numberOfSeats=" + numberOfSeats +
                 ", tyres=" + tyres +
-                ", tyresType='" + tyresType + '\'' +
                 '}';
     }
 }
