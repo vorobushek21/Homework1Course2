@@ -1,9 +1,45 @@
-package transport;
+package transport.cars;
 
-public class Car extends Transport {
-    //private final String brand;
+import transport.Competing;
+import transport.Transport;
+import transport.drivers.DriverB;
+
+import java.sql.SQLOutput;
+
+public class Car extends Transport<DriverB> implements Competing {
+
+
+    public Car(String brand, String model, double engineVolume, DriverB driver) {
+        super(brand, model, engineVolume, driver);
+    }
+
+    @Override
+    public void startMove() {
+        System.out.println("Car "+ getBrand() + " start move" );
+    }
+
+    @Override
+    public void stopMove() {
+        System.out.println("Car " + getBrand() + " stop move");
+    }
+
+    @Override
+    public void pitStop() {
+        System.out.println("Pit Stop");
+    }
+
+    @Override
+    public void bestLapTime() {
+        System.out.println("Best Lap Time");
+    }
+
+    @Override
+    public void maxSpeed() {
+        System.out.println("Max Speed");
+    }
+
+    /*private final String brand;
     //private final String model;
-    private double engineVolume;
     //private String color;
     //private final int year;
     //private final String country;
@@ -92,10 +128,6 @@ public class Car extends Transport {
 
 
 
-    public double getEngineVolume() {
-        return engineVolume;
-    }
-
     @Override
     public String toString() {
         return "Car{" + super.toString() + " ," +
@@ -107,5 +139,5 @@ public class Car extends Transport {
                 ", tyres=" + tyres +
                 ", tyresType='" + tyresType + '\'' +
                 '}';
-    }
+    }*/
 }
