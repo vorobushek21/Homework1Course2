@@ -7,6 +7,12 @@ public abstract class Transport<T extends Driver> {
 
     private T driver;
 
+    public enum Type {
+        CAR,
+        TRUCK,
+        BUS;
+    }
+
     /*private String color;
     private final int year;
     private final String country;
@@ -39,52 +45,25 @@ public abstract class Transport<T extends Driver> {
 
     public abstract void stopMove();
 
+    public abstract Type getType();
+
+    public abstract void printType();
+
     public void getInfo() {
         System.out.println("водитель "+driver.getName()+ " управляет автомобилем " +getBrand()+ " и будет участвовать в заезде");
     }
-}
 
-    /*public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        if(color == null || color.isEmpty()){
-            this.color = "Белый";
-        } else {
-            this.color = color;
-        }
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public int getMaxSpeed() {
-        return maxSpeed;
-    }
-
-    public void setMaxSpeed(int maxSpeed) {
-        if (maxSpeed <= 0) {
-            this.maxSpeed = 150;
-        }else {
-            this.maxSpeed = maxSpeed;
-        }
+    public T getDriver() {
+        return driver;
     }
 
     @Override
     public String toString() {
-        return "Transport{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", color='" + color + '\'' +
-                ", year=" + year +
-                ", country='" + country + '\'' +
-                ", maxSpeed=" + maxSpeed +
-                '}';
+        return "brand = " + brand +
+                ", model = " + model +
+                ", engineVolume = " + engineVolume +
+                ", driver = " + driver;
     }
-}*/
+}
+
+
