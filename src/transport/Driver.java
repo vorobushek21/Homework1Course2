@@ -24,4 +24,12 @@ public class Driver {
     public int getExperience() {
         return experience;
     }
+
+    @Override
+    public String toString() {
+        return "Driver " +
+                "name = " + name +
+                ", haveDriversLicense = " + haveDriversLicense +
+                ", experience = " + experience;
+    }
 }
