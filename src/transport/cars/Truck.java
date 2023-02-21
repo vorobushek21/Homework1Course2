@@ -88,6 +88,11 @@ public class Truck extends Transport<DriverD> implements Competing {
     }
 
     @Override
+    public void getDiagnosed(){
+        System.out.println("Грузовик " + getBrand() + " прошел диагностику");
+    }
+
+    @Override
     public void maxSpeed() {
         System.out.println("Max Speed");
     }

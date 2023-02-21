@@ -79,6 +79,11 @@ public class Car extends Transport<DriverB> implements Competing {
         System.out.println("Max Speed");
     }
 
+    @Override
+    public void getDiagnosed(){
+        System.out.println("Легковой втомобиль " + getBrand() + " прошел диагностику");
+    }
+
     public String toString() {
         return "brand = " + getBrand() +
                 ", model = " + getModel() +
