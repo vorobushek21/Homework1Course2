@@ -49,6 +49,8 @@ public abstract class Transport<T extends Driver> {
 
     public abstract void printType();
 
+    public abstract void getDiagnosed() throws TransportTypeException;
+
     public void getInfo() {
         System.out.println("водитель "+driver.getName()+ " управляет автомобилем " +getBrand()+ " и будет участвовать в заезде");
     }

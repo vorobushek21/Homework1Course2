@@ -2,6 +2,7 @@ package transport.cars;
 
 import transport.Competing;
 import transport.Transport;
+import transport.TransportTypeException;
 import transport.drivers.DriverC;
 
 public class Bus extends Transport<DriverC> implements Competing {
@@ -92,6 +93,11 @@ public class Bus extends Transport<DriverC> implements Competing {
     @Override
     public void maxSpeed() {
         System.out.println("Max Speed");
+    }
+
+    @Override
+    public void getDiagnosed() throws TransportTypeException {
+        throw new TransportTypeException("Автобусы не проходят диагностику");
     }
 
     public String toString() {

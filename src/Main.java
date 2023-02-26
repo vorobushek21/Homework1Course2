@@ -1,4 +1,5 @@
 import transport.Driver;
+import transport.TransportTypeException;
 import transport.cars.Car;
 import transport.cars.Bus;
 import transport.cars.Truck;
@@ -64,5 +65,13 @@ public class Main {
 
         volvo.getType();
         volvo.printType();
+
+        lada.getDiagnosed();
+        try {
+            mers.getDiagnosed();
+        } catch (TransportTypeException e) {
+            System.err.println(e.getMessage());
+        }
+        volvo.getDiagnosed();
     }
 }
