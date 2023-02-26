@@ -1,8 +1,11 @@
 package transport.cars;
 
 import transport.Competing;
+import transport.Mechanic;
 import transport.Transport;
 import transport.drivers.DriverD;
+
+import java.util.List;
 
 public class Truck extends Transport<DriverD> implements Competing {
 
@@ -29,11 +32,10 @@ public class Truck extends Transport<DriverD> implements Competing {
 
     LoadCapacity capacity;
 
-    public Truck(String brand, String model, double engineVolume, DriverD driver, String loadCapacity) {
-        super(brand, model, engineVolume, driver);
-        this.capacity = LoadCapacity.valueOf(loadCapacity);
+    public Truck(String brand, String model, double engineVolume, DriverD driver, List<Mechanic> mechanics, String capacity) {
+        super(brand, model, engineVolume, driver, mechanics);
+        this.capacity = LoadCapacity.valueOf(capacity);
     }
-
 
     @Override
     public void startMove() {
@@ -90,6 +92,11 @@ public class Truck extends Transport<DriverD> implements Competing {
     @Override
     public void getDiagnosed(){
         System.out.println("Грузовик " + getBrand() + " прошел диагностику");
+    }
+
+    @Override
+    public boolean isItPossibleForMaintenance() {
+        return true;
     }
 
     @Override

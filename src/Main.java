@@ -1,5 +1,4 @@
-import transport.Driver;
-import transport.TransportTypeException;
+import transport.*;
 import transport.cars.Car;
 import transport.cars.Bus;
 import transport.cars.Truck;
@@ -7,23 +6,44 @@ import transport.drivers.DriverB;
 import transport.drivers.DriverC;
 import transport.drivers.DriverD;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
+
+        List<Mechanic> mechanics1 = new ArrayList<>();
+        mechanics1.add(new Mechanic("Александр Петров", "BCR"));
+        mechanics1.add(new Mechanic("Иван Давыдов", "FastPro"));
+        mechanics1.add(new Mechanic("Анна Железнова", "Car Fix"));
+
+        List<Mechanic> mechanics2 = new ArrayList<>();
+        mechanics2.add(new Mechanic("Матвей Никитин", "BCR"));
+        mechanics2.add(new Mechanic("Всеволод Попов", "FastPro"));
+        mechanics2.add(new Mechanic("Роман Новиков", "Car Fix"));
+
+        List<Mechanic> mechanics3 = new ArrayList<>();
+        mechanics3.add(new Mechanic("Михаил Маслов", "BCR"));
+        mechanics3.add(new Mechanic("Сергей Попов", "FastPro"));
+        mechanics3.add(new Mechanic("Николай Шишкин", "Car Fix"));
 
         DriverB[] driversB = new DriverB[3];
         for (int i = 0; i < driversB.length; i++) {
             driversB[i] = new DriverB("Driver cat. B #" + (i + 1) * 2, true, 4 + i);
 
         }
-        Car lada = new Car("Lada", "Granta", 1.7, driversB[0], "SEDAN");
+        Car lada = new Car("Lada", "Granta", 1.7, driversB[0], mechanics1, "SEDAN");
         System.out.println(lada);
         lada.getInfo();
-        Car audi = new Car("Audi", "A8 50 L TDI quattro", 3.0, driversB[1], "COUPE");
+        Car audi = new Car("Audi", "A8 50 L TDI quattro", 3.0, driversB[1], mechanics2, "COUPE");
         System.out.println(audi);
         audi.getInfo();
-        Car bmw = new Car("BMW", "Z8", 3.0, driversB[2], "PICKUP");
+        Car bmw = new Car("BMW", "Z8", 3.0, driversB[2], mechanics3, "PICKUP");
         System.out.println(bmw);
         bmw.getInfo();
+
+        mechanics1.get(0).fixTheCar(lada);
+        mechanics2.get(2).maintenance(audi);
 
         DriverC[] driversC = new DriverC[3];
         for (int i = 0; i < driversB.length; i++) {
@@ -31,15 +51,18 @@ public class Main {
 
         }
 
-        Bus uaz = new Bus("УАЗ", "2300", 7.5, driversC[0], Bus.Capacity.EXTRA_SMALL);
+        Bus uaz = new Bus("УАЗ", "2300", 7.5, driversC[0], mechanics3, Bus.Capacity.EXTRA_SMALL);
         System.out.println(uaz);
         uaz.getInfo();
-        Bus gazel = new Bus("ГАЗель", "автобус", 8.0, driversC[1], Bus.Capacity.LARGE);
+        Bus gazel = new Bus("ГАЗель", "автобус", 8.0, driversC[1], mechanics1, Bus.Capacity.LARGE);
         System.out.println(gazel);
         gazel.getInfo();
-        Bus mers = new Bus("Мерседес", "Спринтер", 10.0, driversC[2], Bus.Capacity.MIDDLE);
+        Bus mers = new Bus("Мерседес", "Спринтер", 10.0, driversC[2], mechanics2, Bus.Capacity.MIDDLE);
         System.out.println(mers);
         mers.getInfo();
+
+        mechanics1.get(1).fixTheCar(uaz);
+        mechanics2.get(2).maintenance(mers);
 
         DriverD[] driversD = new DriverD[3];
         for (int i = 0; i < driversD.length; i++) {
@@ -47,15 +70,34 @@ public class Main {
 
         }
 
-        Truck volvo = new Truck("Volvo", "Wild", 13.2, driversD[0], "N2");
+        Truck volvo = new Truck("Volvo", "Wild", 13.2, driversD[0], mechanics2, "N2");
         System.out.println(volvo);
         volvo.getInfo();
-        Truck scania = new Truck("Scania", "R999", 12.5, driversD[1], "N1");
+        Truck scania = new Truck("Scania", "R999", 12.5, driversD[1], mechanics3, "N1");
         System.out.println(scania);
         scania.getInfo();
-        Truck tata = new Truck("Tata", "Prima", 12.0, driversD[2], "N3");
+        Truck tata = new Truck("Tata", "Prima", 12.0, driversD[2], mechanics1, "N3");
         System.out.println(tata);
         tata.getInfo();
+
+        mechanics1.get(2).fixTheCar(scania);
+        mechanics2.get(1).maintenance(tata);
+
+        List<Transport> raceCars = new ArrayList<>();
+        raceCars.add(lada);
+        raceCars.add(audi);
+        raceCars.add(bmw);
+        raceCars.add(uaz);
+        raceCars.add(gazel);
+        raceCars.add(mers);
+        raceCars.add(volvo);
+        raceCars.add(scania);
+        raceCars.add(tata);
+
+
+
+
+
 
         audi.getType();
         audi.printType();
@@ -73,5 +115,16 @@ public class Main {
             System.err.println(e.getMessage());
         }
         volvo.getDiagnosed();
+
+        Transport.transportInfo(audi);
+        Transport.transportInfo(mers);
+        Transport.transportInfo(tata);
+
+        ServiceStation service = new ServiceStation();
+        service.addCarToQueue(lada);
+        service.addCarToQueue(tata);
+        service.addCarToQueue(uaz);
+        service.technicalInspection();
+
     }
 }
