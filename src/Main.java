@@ -7,7 +7,9 @@ import transport.drivers.DriverC;
 import transport.drivers.DriverD;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -125,6 +127,34 @@ public class Main {
         service.addCarToQueue(tata);
         service.addCarToQueue(uaz);
         service.technicalInspection();
+
+        List<String> mechanicsName1 = new ArrayList<>();
+        for (Mechanic l : mechanics1) {
+            mechanicsName1.add(l.getName());
+        }
+        List<String> mechanicsName2 = new ArrayList<>();
+        for (Mechanic l : mechanics2) {
+            mechanicsName2.add(l.getName());
+        }
+        List<String> mechanicsName3 = new ArrayList<>();
+        for (Mechanic l : mechanics3) {
+            mechanicsName3.add(l.getName());
+        }
+
+        Map<String, List<String>> carMechanics = new HashMap<>();
+        carMechanics.put(lada.getBrand(), mechanicsName1);
+        carMechanics.put("audi", mechanicsName2);
+        carMechanics.put("bmw", mechanicsName3);
+        carMechanics.put("uaz", mechanicsName3);
+        carMechanics.put("gazel", mechanicsName1);
+        carMechanics.put("mers", mechanicsName2);
+        carMechanics.put("volvo", mechanicsName2);
+        carMechanics.put("scania", mechanicsName3);
+        carMechanics.put("tata", mechanicsName1);
+
+        for (Map.Entry m : carMechanics.entrySet()) {
+                System.out.println("Т/с " + m.getKey() + " обслуживается следующими механиками: " + m.getValue());
+        }
 
     }
 }
