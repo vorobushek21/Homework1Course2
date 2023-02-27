@@ -1,9 +1,13 @@
 package transport.cars;
 
 import transport.Competing;
+import transport.Mechanic;
 import transport.Transport;
 import transport.TransportTypeException;
 import transport.drivers.DriverC;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Bus extends Transport<DriverC> implements Competing {
 
@@ -35,8 +39,9 @@ public class Bus extends Transport<DriverC> implements Competing {
 
     Capacity capacityPassenger;
 
-    public Bus(String brand, String model, double engineVolume, DriverC driver, Capacity capacityPassenger) {
-        super(brand, model, engineVolume, driver);
+
+    public Bus(String brand, String model, double engineVolume, DriverC driver, List<Mechanic> mechanics, Capacity capacityPassenger) {
+        super(brand, model, engineVolume, driver, mechanics);
         this.capacityPassenger = capacityPassenger;
     }
 
@@ -80,6 +85,7 @@ public class Bus extends Transport<DriverC> implements Competing {
     }
 
 
+
     @Override
     public void pitStop() {
         System.out.println("Pit Stop");
@@ -98,6 +104,11 @@ public class Bus extends Transport<DriverC> implements Competing {
     @Override
     public void getDiagnosed() throws TransportTypeException {
         throw new TransportTypeException("Автобусы не проходят диагностику");
+    }
+
+    @Override
+    public boolean isItPossibleForMaintenance() {
+        return false;
     }
 
     public String toString() {

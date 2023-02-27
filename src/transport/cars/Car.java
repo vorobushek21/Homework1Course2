@@ -1,10 +1,12 @@
 package transport.cars;
 
 import transport.Competing;
+import transport.Mechanic;
 import transport.Transport;
 import transport.drivers.DriverB;
 
 import java.lang.reflect.Type;
+import java.util.List;
 
 public class Car extends Transport<DriverB> implements Competing {
 
@@ -32,12 +34,10 @@ public class Car extends Transport<DriverB> implements Competing {
 
     BodyType typeOfBody;
 
-    public Car(String brand, String model, double engineVolume, DriverB driver, String bodyType) {
-        super(brand, model, engineVolume, driver);
-        this.typeOfBody = BodyType.valueOf(bodyType);
-
+    public Car(String brand, String model, double engineVolume, DriverB driver, List<Mechanic> mechanics, String typeOfBody) {
+        super(brand, model, engineVolume, driver, mechanics);
+        this.typeOfBody = BodyType.valueOf(typeOfBody);
     }
-
 
     @Override
     public void startMove() {
@@ -82,6 +82,11 @@ public class Car extends Transport<DriverB> implements Competing {
     @Override
     public void getDiagnosed(){
         System.out.println("Легковой втомобиль " + getBrand() + " прошел диагностику");
+    }
+
+    @Override
+    public boolean isItPossibleForMaintenance() {
+        return true;
     }
 
     public String toString() {
