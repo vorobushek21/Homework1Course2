@@ -141,19 +141,19 @@ public class Main {
             mechanicsName3.add(l.getName());
         }
 
-        Map<String, List<String>> carMechanics = new HashMap<>();
-        carMechanics.put(lada.getBrand(), mechanicsName1);
-        carMechanics.put("audi", mechanicsName2);
-        carMechanics.put("bmw", mechanicsName3);
-        carMechanics.put("uaz", mechanicsName3);
-        carMechanics.put("gazel", mechanicsName1);
-        carMechanics.put("mers", mechanicsName2);
-        carMechanics.put("volvo", mechanicsName2);
-        carMechanics.put("scania", mechanicsName3);
-        carMechanics.put("tata", mechanicsName1);
+        Map<Transport, List<String>> carMechanics = new HashMap<>();
+        carMechanics.put(new Car("Lada", "Granta", 1.7, driversB[0], mechanics1, "SEDAN"), mechanicsName1);
+        carMechanics.put(new Car("Audi", "A8 50 L TDI quattro", 3.0, driversB[1], mechanics2, "COUPE"), mechanicsName2);
+        carMechanics.put(new Car("BMW", "Z8", 3.0, driversB[2], mechanics3, "PICKUP"), mechanicsName3);
+        carMechanics.put(new Bus("УАЗ", "2300", 7.5, driversC[0], mechanics3, Bus.Capacity.EXTRA_SMALL), mechanicsName3);
+        carMechanics.put(new Bus("ГАЗель", "автобус", 8.0, driversC[1], mechanics1, Bus.Capacity.LARGE), mechanicsName1);
+        carMechanics.put(new Bus("Мерседес", "Спринтер", 10.0, driversC[2], mechanics2, Bus.Capacity.MIDDLE), mechanicsName2);
+        carMechanics.put(new Truck("Volvo", "Wild", 13.2, driversD[0], mechanics2, "N2"), mechanicsName2);
+        carMechanics.put(new Truck("Scania", "R999", 12.5, driversD[1], mechanics3, "N1"), mechanicsName3);
+        carMechanics.put(new Truck("Tata", "Prima", 12.0, driversD[2], mechanics1, "N3"), mechanicsName1);
 
-        for (Map.Entry m : carMechanics.entrySet()) {
-                System.out.println("Т/с " + m.getKey() + " обслуживается следующими механиками: " + m.getValue());
+        for (Map.Entry<Transport, List<String>> m : carMechanics.entrySet()) {
+                System.out.println("Т/с " + m.getKey().getBrand() + " обслуживается следующими механиками: " + m.getValue());
         }
 
     }
