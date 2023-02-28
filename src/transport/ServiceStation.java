@@ -6,7 +6,7 @@ import transport.Transport;
 
 public class ServiceStation<Car, Truck> {
 
-    Queue<Transport> transports = new LinkedList<>();
+    private Queue<Transport> transports = new LinkedList<>();
 
     public void addCarToQueue(Transport<?> transport) {
         if (transport.isItPossibleForMaintenance()) {
