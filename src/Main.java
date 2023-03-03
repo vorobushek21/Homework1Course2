@@ -6,10 +6,7 @@ import transport.drivers.DriverB;
 import transport.drivers.DriverC;
 import transport.drivers.DriverD;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -97,10 +94,6 @@ public class Main {
         raceCars.add(tata);
 
 
-
-
-
-
         audi.getType();
         audi.printType();
 
@@ -156,5 +149,20 @@ public class Main {
                 System.out.println("Т/с " + m.getKey().getBrand() + " обслуживается следующими механиками: " + m.getValue());
         }
 
+        Set<Driver> driversList = new HashSet<>();
+
+        driversList.add(driversB[2]);
+        driversList.add(driversD[1]);
+        driversList.add(driversC[2]);
+        driversList.add(driversD[0]);
+        driversList.add(driversB[2]);
+        driversList.add(driversC[1]);
+        driversList.add(driversD[0]);
+
+        Iterator<Driver> iterDrivers = driversList.iterator();
+
+        while (iterDrivers.hasNext()) {
+            System.out.println(iterDrivers.next());
+        }
     }
 }
